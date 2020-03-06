@@ -17,7 +17,7 @@ int main() {
 			std::cin >> line;
 			
 			for(int j = 1; j <= n; j++) {
-            	if(line[j-1] == '*') {
+            			if(line[j-1] == '*') {
 					out[i][j] = -1;
 
 					for(int k = i-1; k <= i+1; k++) {
@@ -28,7 +28,7 @@ int main() {
 				}	         	
 			}
 		}
-
+		if(cont > 1) std::cout << std::endl;
 		std::cout << "Field #" << cont << ":\n";
 		for(int i = 1; i <= m+1; i++) {
 			for(int j  = 1; j <= n+1; j++) {
@@ -41,7 +41,7 @@ int main() {
 				}
 				out[i][j] = 0;
 			}
-			std::cout << std::endl;
+			if(i <= m) std::cout << std::endl;
 		}
 		cont++;
 	}
