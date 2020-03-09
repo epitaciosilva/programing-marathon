@@ -2,12 +2,10 @@
 #include <cstdio>
 
 const int MAX = 100000;
-int levels, nprob = 0, start = 0, marcador = 100000, contLevels = 0, cont = 0;
-int probs[MAX], aux[MAX] = {0}, validos[MAX] = {0};
+int levels, nprob = 0, start = 0, inicio = 0, marcador = 100000, contLevels = 0, removidos = 0;
+int probs[MAX], aux[MAX] = {0};
 
 bool temSolucao() {
-	contLevels = 0;
-	
 	for(int i = start; i < nprob; i++) {		
 		// se o número ainda não está dentro de aux, adiciona
 		if(probs[i] != 0 && aux[probs[i]-1] != probs[i]) {
@@ -19,22 +17,28 @@ bool temSolucao() {
 		}
 	}
 	
+	if(contLevels != levels) {
+		start = nprob;
+		return false;
+	}
+	removidos = 0;
 	// marcando probs e limpando aux
-	for(int i = start; i < nprob; i++) {
-		if(contLevels == levels && aux[probs[i]-1] != 0) {
+	for(int i = inicio; i < nprob; i++) {
+		if(aux[probs[i]-1] != 0) {
 			aux[probs[i]-1] = 0; 
 			probs[i] = 0;
+			if(i >= marcador) {
+				removidos++;
+			}
 		} else {
 			aux[probs[i]-1] = 0;
 		}
 	}
 
-	// verificando se tem solução
-	if(contLevels == levels) {	
-		start = marcador != 100000 ? marcador : nprob;
-		return true;
-	}
-	return false;
+	contLevels = 0;
+	start = marcador != 100000 ? marcador : nprob;
+	inicio = start;
+	return true;
 }
 
 
@@ -47,14 +51,13 @@ int main() {
 	std::cin >> levels >> n;
 	for(; n > 0; n--) {
 		std::cin >> probs[nprob++];	
-		if(nprob-levels >= start) {
+		if(nprob >= inicio+removidos+levels) {
 			if(temSolucao()) {
 				std::cout << 1;
 			} else {
 				std::cout << 0;
 			}
 		} else {
-			validos[cont++] = nprob-1;
 			std::cout << 0;
 		}
 	}
