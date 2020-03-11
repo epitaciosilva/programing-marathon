@@ -24,7 +24,7 @@ int main() {
 			if(raiz != (int)raiz || root == (int)root) {
 				cout << "NO\n";
 			} else {
-				for(long long int i = 3; i <= ((int)raiz)-2; i+=2) {
+				for(long long int i = 3; i <= ((int)raiz)/2; i+=2) {
 					if(num % i == 0) {
 						tprimo = 1;
 						cout << "NO\n";
