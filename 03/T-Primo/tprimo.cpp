@@ -2,38 +2,47 @@
 #include <cmath>
 using namespace std;
 
+const int MAX = 1000000;
+long long int primos[MAX] = {};
+
+void gerar_nao_primos() {
+	for(long long int i = 3; i < MAX; i+=2) {
+		if(primos[i] == 0) {
+			for(long long int j = i+i; j < MAX; j+=i) {
+				primos[j] = 1;
+			}
+		}
+	}
+}
+
 int main() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
+	gerar_nao_primos();
+
 	int n, tprimo = 0;
+	int rz, rt;
 	double raiz, root;
 	long long int num;
+
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
 	
 	cin >> n;
 	for(; n > 0; n--) {
 		cin >> num;
 		tprimo = 0;	
+		
 		if(num == 4) {
 			cout << "YES\n";
 		} else if(num % 2 == 0 || num == 1) {
 			cout << "NO\n";
 		} else {
 			raiz = sqrt(num);
-			root = sqrt(raiz);
-			// verificando se o número possui uma raiz inteira
-			if(raiz != (int)raiz || root == (int)root) {
+			rz = (int)raiz;
+			
+			if(raiz != rz || primos[rz] == 1) {
 				cout << "NO\n";
-			} else {
-				for(long long int i = 3; i <= ((int)raiz)/2; i+=2) {
-					if(num % i == 0) {
-						tprimo = 1;
-						cout << "NO\n";
-						break;
-					} 
-				}
-				if(tprimo == 0) {
-					cout << "YES\n";
-				} 
+			} else if(primos[rz] == 0){
+				cout << "YES\n";
 			}
 		}
 	}
