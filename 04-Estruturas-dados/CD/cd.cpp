@@ -47,17 +47,29 @@ int main() {
 		Node *j = numsM;
 		while(true) {
 			while(i != NULL && i->value > j->value) {
-				i = i->next;	
+				tmp = i;
+				i = i->next;
+				delete tmp;
+				tmp = NULL;
 			}
 			while(j != NULL && j->value > i->value) {
-				j = j->next;	
+				tmp = j;
+				j = j->next;
+				delete tmp;
+				tmp = NULL;
 			}
 			if(i == NULL || j == NULL) {
 				break;
 			} else if(i->value == j->value) {
 				cont++;
-				i = i->next;
+				
+				tmp = j;
 				j = j->next;
+				delete tmp;
+
+				tmp = i;
+				i = i->next;
+				delete tmp;
 			}
 		}	
 		std::cout << cont << std::endl;
