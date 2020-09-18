@@ -7,9 +7,10 @@ int main() {
     cin.tie(NULL);
 
     int n;
-    long x = 0, y = 0; 
+    long x = 0, y = 0;
+    int A[100000] = {};
+    
     cin >> n; 
-    int A[n] = {};
     for(int i = 0; i < n; i++) {
         cin >> A[i];
     }
@@ -22,6 +23,7 @@ int main() {
             x+=A[i];
         }
     }
+
     cout << x*x + y*y << endl; 
     return 0;
 }
