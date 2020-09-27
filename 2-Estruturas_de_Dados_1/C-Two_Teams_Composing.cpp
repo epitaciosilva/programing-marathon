@@ -18,10 +18,6 @@ int main() {
 
         cin >> n;
         
-        if(n % 2 == 0) {
-            par = true;
-        }
-
         while(n--) {
             cin >> num;
             numbers[num] += 1;
