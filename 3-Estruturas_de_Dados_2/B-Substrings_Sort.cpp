@@ -33,7 +33,7 @@ int main() {
         for(int i = 0; i < n-1; i++) {
             can = false;
             for(int j = 0; j < sizes[i+1]; j++) {
-                if(s[sizes[i]].compare(s[sizes[i+1]].substr(j,sizes[i])) == 0) { // s[i] é uma substring da string seguinte
+                if(s[sizes[i]].compare(s[sizes[i+1]].substr(j,sizes[i])) == 0) { // s[i] é uma substring da string s[i+1]
                     can = true;
                     break;
                 }
