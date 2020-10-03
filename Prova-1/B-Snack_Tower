@@ -1,0 +1,31 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    int n, t, num;
+    int vet[100000] = {};
+
+    cin >> n; 
+    t = n;
+    
+    for(int i = 0; i < n; i++) {
+        cin >> num;
+        vet[num-1] = num;
+        if(vet[t-1] == 0) {
+            cout << endl;
+        } else {
+            while(t > 0 && vet[t-1] != 0) {
+                cout << vet[t-1] << " ";
+                t--;
+            }
+            cout << endl;
+        }
+    }
+    
+    return 0;
+}
